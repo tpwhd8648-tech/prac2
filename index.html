@@ -96,8 +96,8 @@
         <span class="clabel">속도:</span>
         <button class="spd on" onclick="setSpd(1)" id="s1">1x</button>
         <button class="spd" onclick="setSpd(2)" id="s2">2x</button>
-        <button class="spd" onclick="setSpd(4)" id="s4">4x</button>
-        <button class="spd" onclick="setSpd(1000)" id="s1000">1000x</button>
+        <button class="spd" onclick="setSpd(10)" id="s10">10x</button>
+        <button class="spd" onclick="setSpd(30)" id="s30">30x</button>
       </div>
     </div>
 
@@ -227,7 +227,7 @@ function upg(t) {
 
 function setSpd(s) {
   spd=s;
-  ['s1','s2','s4','s1000'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  ['s1','s2','s10','s30'].forEach(id=>document.getElementById(id).classList.remove('on'));
   document.getElementById('s'+s).classList.add('on');
 }
 
