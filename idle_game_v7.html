@@ -115,7 +115,7 @@
             <span class="ucard-name">❤️ 체력</span>
             <span class="ucard-val">현재 <span id="vHp">100</span></span>
           </div>
-          <div class="ucard-val" style="margin-bottom:5px">+<span id="qHp">1</span> &nbsp; <span class="ucost" id="cHp">골드 100</span></div>
+          <div class="ucard-val" style="margin-bottom:5px">+<span id="qHp">10</span> &nbsp; <span class="ucost" id="cHp">골드 100</span></div>
           <button class="ubtn" id="uHp" onclick="upg('hp')">구매</button>
         </div>
 
@@ -124,7 +124,7 @@
             <span class="ucard-name">💜 도사 힐량</span>
             <span class="ucard-val">현재 <span id="vHeal">18</span></span>
           </div>
-          <div class="ucard-val" style="margin-bottom:5px">+<span id="qHeal">1</span> &nbsp; <span class="ucost" id="cHeal">골드 100</span></div>
+          <div class="ucard-val" style="margin-bottom:5px">+<span id="qHeal">10</span> &nbsp; <span class="ucost" id="cHeal">골드 100</span></div>
           <button class="ubtn" id="uHeal" onclick="upg('heal')">구매</button>
         </div>
       </div>
@@ -213,12 +213,14 @@ function upg(t) {
   if(gold < cost) return;
   gold -= cost;
   if(t==='hp'){
-    hero.maxHp += qty;
-    hero.hp = Math.min(hero.hp+qty, hero.maxHp);
-    addLog('❤️ 체력 +'+qty+' → '+hero.maxHp, 'upg');
+    const gain = qty*10;
+    hero.maxHp += gain;
+    hero.hp = Math.min(hero.hp+gain, hero.maxHp);
+    addLog('❤️ 체력 +'+gain+' → '+hero.maxHp, 'upg');
   } else if(t==='heal'){
-    sage.healPow += qty;
-    addLog('💜 도사 힐량 +'+qty+' → '+sage.healPow, 'upg');
+    const gain = qty*10;
+    sage.healPow += gain;
+    addLog('💜 도사 힐량 +'+gain+' → '+sage.healPow, 'upg');
   }
   render();
 }
@@ -275,8 +277,8 @@ function render() {
   const cost = UNIT_COST*qty;
   document.getElementById('vHp').textContent = hero.maxHp;
   document.getElementById('vHeal').textContent = sage.healPow;
-  document.getElementById('qHp').textContent = qty;
-  document.getElementById('qHeal').textContent = qty;
+  document.getElementById('qHp').textContent = qty*10;
+  document.getElementById('qHeal').textContent = qty*10;
   document.getElementById('cHp').textContent = '골드 '+cost;
   document.getElementById('cHeal').textContent = '골드 '+cost;
   document.getElementById('uHp').disabled = gold<cost;
